@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+/* Configuração geral do corpo da página */
+
+body{
+	margin: 0 auto;
+	font-family: "Century Gothic", sans-serif;
+}
+
+/*************************
+   Configurações Gerais
+*************************/
+/*Cabeçalho*/
+header{
+	height: 170px;
+	background-color: #be2121;
+}
+header img{
+	float: left;
+	height: 150px;
+	width: 150px;
+	margin: 10px;
+}
+header h1{
+	float: left;
+	margin: 25px 0 0 50px;
+	font-size: 100px;
+	color: #f9c939;
+}
+/* Menu */
+nav{
+	clear: both;
+	width: 80%;
+	margin: 0px auto;
+	heigth: 55px;
+	font-weight: bold;
+}
+nav a{
+	color: white;
+	text-decoration: none;
+	text-align: center;
+}
+nav .opcao{
+	float: left;
+	width: 31.1%;
+	background-color: #fc6514;
+	padding: 10px 0;
+	margin: 0 1% ;
+	font-size: 26px;
+}
+nav .opcao:hover{
+	background-color: #f9c939;
+}
+/* Área geral para conteúdos específicos de cada página */
+section{
+	clear: both;
+	min-height: 550px;
+	width: 100%;
+	margin-top: 0px;
+}
+/* Rodapé */
+footer{
+	background-color: #be2121;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+}
+/* Configuração da página inicial */
+section #topo{
+	width: 1300px;
+	margin: 0px auto;
+	height: 250px;
+}
+.velocista{
+	height: 550px;
+	width: 325px;
+}
+.direita{
+	float: right;
+}
+.esquerda{
+	float: left;
+}
+section #titulos{
+	float: left;
+	height: 250px;
+	width: 650px;
+	margin: 0px auto;
+}
+h2{
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 60px;
+}
+h3{
+	text-align: center;
+	margin-top: 40px;
+	font-size: 30px;
+}
+section p{
+	text-align: center;
+	margin: 10px 80px;
+	font-size: 18px;
+}
+/* Configuração da página Herois */
+.tabelaVersoes{
+	margin: 10px auto;
+	text-align: center;
+}
+.tituloTabela{
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	color: white;
+	padding: 5px;
+	border: transparent;
+}
+tr,td,th{
+	border: 1px solid #B0C4DE;
+	padding: 5px;
+}
+tr,td{
+	font-size: 14px;
+}
+tr:nth-child(even){
+	background-color: #fec494;
+}
+tr:nth-child(odd){
+	background-color: #f57710;
+}
+/* Configuração da página de Inscrição */	
+.inscricao{
+	width: 300px;
+	margin: 0px auto; /*espaçamento na parte de cima*/
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.inscricao input{
+	margin: 5px auto;
+	width: 100%;
+	padding: 5px 0;
+}
+.inscricao input[type="radio"]{
+	text-align: center;
+	margin-bottom: 10px;
+	width: 30px;
+}
+#roxo{
+	margin: 0 0 0 34px;
+}
+.inscricao input[type="checkbox"]{
+	text-align: center;
+	margin: 5px auto;	
+	width: 30px;
+}
+.inscricao button{
+	width: 30%;
+	margin: 10px 30px;
+	background-color: #fc6514;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}

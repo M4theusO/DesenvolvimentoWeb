@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>CONTATO</title>
+<link rel="stylesheet" type="text/css" href="contato.css">
+<script>
+/*validar*/
+function validaContato(){
+	var nome = document.frmcontato.nome.value;
+	var expRegNome = new RegExp("^[A-zÀ-ü]{3,}([ ]{1}[A-zÀ-ü]{2,})+$");
+	
+	if(!expRegNome.test(nome)){
+		alert("Preencha o campo Nome corretamente.");
+		document.frmcontato.nome.focus();
+		return false;
+	}
+	var endereco = document.frmcontato.endereco.value;
+	var expRegEndereco = new RegExp("^[A-zÀ-ü]{3,}([ ]{1}[A-zÀ-ü]{2,})+$"); /* criar mais um campo para numero*/
+
+	if(!expRegEndereco.test(endereco)){
+		alert("Preencha o campo Endereço corretamente.");
+		document.frmcontato.endereco.focus();
+		return false;
+	}
+	
+	var numCasa = document.frmcontato.numCasa.value;
+	var expRegCasa = new RegExp("^[0-9]{1,}$"); /* criar mais um campo para numero*/
+
+	if(!expRegCasa.test(numCasa)){
+		alert("Preencha o campo Casa corretamente.");
+		document.frmcontato.numCasa.focus();
+		return false;
+	}
+	
+	var fone = document.frmcontato.fone.value;
+	var expRegFone = new RegExp("^[(]{1}[1-9]{2}[)]{1}[0-9]{4,5}[-]{1}[0-9]{4}$");
+
+	if(!expRegFone.test(fone)){
+		alert("Preencha o campo Telefone corretamente.");
+		document.frmcontato.fone.focus();
+		return false;
+	}
+	return true;
+}
+</script>
+</head>
+<body>
+	<form name="frmcontato" action="insereContato" onsubmit="return validaContato();">
+		<fieldset class="contato">
+			<legend>Contato</legend>
+			<label for="nome">Nome:</label>
+			<input type="text" name="nome" Placeholder="ex.: Filomena da Silva">			
+			<label for="endereco">Endereço (rua):</label>
+			<input type="text" name="endereco" Placeholder="ex.: Rua Excelsior">
+			<label for="numCasa">Número da casa:</label>
+			<input type="text" name="numCasa" Placeholder="ex.: 1789">				
+			<label for="telefone">Telefone:</label>
+			<input type="text" name="fone" Placeholder="ex.: (xx)xxxxx-xxxx">					
+			<button type="submit">Enviar</button><button type="reset">Limpar</button>
+		</fieldset>
+	</form>
+</body>
+</html>

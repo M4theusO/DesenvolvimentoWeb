@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+/* Configuração geral do corpo da página */
+
+body{
+	margin: 0 auto;
+	font-family: Snell Roundhand, cursive;
+	background-color: #f5e6b4;
+}
+
+/*************************
+   Configurações Gerais
+*************************/
+/*Cabeçalho*/
+header{
+	height: 170px;
+	background-color: #be2121;
+}
+header img{
+	float: left;
+	height: 150px;
+	width: 150px;
+	margin: 10px;
+}
+header h1{
+	float: left;
+	margin: 10px 0 0 50px;
+	font-size: 100px;
+	color: #f9c939;
+	text-shadow: 6px 6px black;
+}
+/* Menu */
+nav{
+	clear: both;
+	width: auto;
+	margin: 0px auto;
+	heigth: 55px;
+}
+nav a{
+	color: white;
+	text-decoration: none;
+	text-align: center;
+}
+nav .opcao{
+	float: left;
+	width: 31.1%;
+	background-color: #fc6514;
+	padding: 10px 0;
+	margin: 0 1% ;
+	font-size: 26px;
+	text-shadow: 2px 2px #950000;
+}
+nav .opcao:hover{
+	background-color: #f9c939;
+}
+/* Área geral para conteúdos específicos de cada página */
+section{
+	clear: both;
+	min-height: 550px;
+	width: 100%;
+	margin-top: 0px;
+}
+/*imagens*/
+.direita{
+	float: right;
+}
+.esquerda{
+	float: left;
+}
+/* Rodapé */
+footer{
+	background-color: #be2121;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+}
+/* Configuração da página inicial */
+section #topo{
+	width: 1300px;
+	margin: 0px auto;
+	height: 250px;
+	/*background-color: ;*/
+}
+.velocista{
+	height: 550px;
+	width: 325px;
+}
+section #titulos{
+	float: left;
+	height: 250px;
+	width: 650px;
+	margin: 0px auto;
+	/*background-color: ;*/
+}
+h2{
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 60px;
+	color: #be2121;
+	text-shadow: 1px 1px #390404;
+}
+h3{
+	text-align: center;
+	margin: 10px auto;
+	font-size: 30px;
+	color: #d95c00;
+	text-shadow: 1px 1px #775617;
+}
+section p{
+	text-align: center;
+	margin: 20px 80px;
+	font-size: 20px;
+	color: #e86300;
+	text-shadow: 1px 1px #775617;
+}
+/* Configuração da página Herois */
+section #imgsHeroi{
+	width: 1400px;
+	margin: 0px auto;
+	height: 550px;
+	/*background-color: ;*/
+}
+.versoesFlash{
+	margin-top: 100px;
+	height: 350px;
+	width: 350px;
+	box-shadow: 10px 5px 5px #db1e02;
+}
+section #tabelas{
+	float: left;
+	height: auto;
+	width: 600px;
+	margin: 0px 50px 0px;
+	/*background-color: ;*/
+}
+.tabelaVersoes{
+	margin: 10px auto;
+	text-align: center;
+}
+.tituloTabela{
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	color: white;
+	padding: 5px;
+	border: transparent;
+}
+tr,td,th{
+	border: 1px solid #B0C4DE;
+	padding: 5px;
+}
+tr,td{
+	font-size: 14px;
+}
+tr:nth-child(even){
+	background-color: #fec494;
+}
+tr:nth-child(odd){
+	background-color: #f57710;
+}
+/* Configuração da página de Inscrição */	
+section #formDados{
+	float: left;
+	height: auto;
+	width: auto;
+	margin: 0px 60px;
+	/*background-color: black;*/
+}
+.inscricao{
+	width: 300px;
+	margin: 0px auto; /*espaçamento na parte de cima*/
+	font-weight: bold;
+	margin-bottom: 10px;
+	background-color: #ffffe6;
+}
+.inscricao input{
+	margin: 5px auto;
+	width: 100%;
+	padding: 5px 0;
+}
+.inscricao input[type="radio"]{
+	text-align: center;
+	margin-bottom: 10px;
+	width: 30px;
+}
+#roxo{
+	margin: 0 0 0 34px;
+}
+.inscricao input[type="checkbox"]{
+	text-align: center;
+	margin: 5px auto;	
+	width: 30px;
+}
+.inscricao button{
+	width: 30%;
+	margin: 10px 30px;
+	background-color: #fc6514;
+	font-weight: bold;
+	font-size: 16px;
+}
+section #flashInscricao{
+	width: 1300px;
+	margin: 0px auto;
+	height: 625px;
+	/*background-color: red;*/
+}
+.velocista2{
+	height: 450px;
+	width: 425px;
+}
+.direita{
+	float: right;
+}
+.esquerda{
+	float: left;
+}

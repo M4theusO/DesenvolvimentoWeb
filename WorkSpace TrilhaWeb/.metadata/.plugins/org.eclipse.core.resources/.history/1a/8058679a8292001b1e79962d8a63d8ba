@@ -1,0 +1,9 @@
+package br.com.coldigogeladeiras.bd;
+
+import java.sql.Connection;
+
+public class Conexão {
+	
+	private Connection conexao;
+
+}

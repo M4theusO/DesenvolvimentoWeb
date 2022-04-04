@@ -1,0 +1,7 @@
+127.0.0.1 - - [23/Feb/2021:18:33:45 -0300] "GET / HTTP/1.1" 404 763
+0:0:0:0:0:0:0:1 - - [23/Feb/2021:18:33:58 -0300] "GET /exemploServlet/contato.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Feb/2021:18:33:58 -0300] "GET /exemploServlet/contato.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Feb/2021:18:34:07 -0300] "GET /exemploServlet/contato.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Feb/2021:18:34:07 -0300] "GET /exemploServlet/contato.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Feb/2021:18:34:08 -0300] "GET /favicon.ico HTTP/1.1" 404 774
+0:0:0:0:0:0:0:1 - - [23/Feb/2021:20:53:43 -0300] "GET /exemploServlet/insereContato?nome=Matheus+de+Oliveira&endereco=Dilma+123&fone=%2847%2999999-9999 HTTP/1.1" 200 162

@@ -1,0 +1,5 @@
+172.20.78.56 - - [09/Apr/2021:18:45:06 -0300] "GET / HTTP/1.1" 404 763
+172.20.78.56 - - [09/Apr/2021:18:45:12 -0300] "GET /HNAP1/ HTTP/1.1" 404 773
+0:0:0:0:0:0:0:1 - - [09/Apr/2021:19:39:54 -0300] "GET /ProjetoTrilhaWeb/pages/admin/product/ HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [09/Apr/2021:19:39:54 -0300] "GET /ProjetoTrilhaWeb/js/product.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [09/Apr/2021:19:39:58 -0300] "GET /ProjetoTrilhaWeb/rest/marca/buscar HTTP/1.1" 200 82
