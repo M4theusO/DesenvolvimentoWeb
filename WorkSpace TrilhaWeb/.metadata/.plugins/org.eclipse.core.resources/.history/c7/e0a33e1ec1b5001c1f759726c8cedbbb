@@ -1,0 +1,21 @@
+alert("OLAAA!");
+
+COLDIGO.compra = new Object();
+
+$(document).ready(function(){
+	
+	/*******************************
+	 * 	Funções do mestre-detalhe 
+	 *******************************/
+	
+	/*FUNÇÃO PARA CRIAR UMA NOVA LINHA DE DETALHE NO FORMULÁRIO*/
+	
+	//Ao clicar no botão botaoAdd:
+	$(".botaoAdd").click(function(){
+		
+		//Cria um clone da primeira linha de detalhe (veja a classe 'detalhes') e salva na variável novoCampo
+		
+		
+	});
+	
+});

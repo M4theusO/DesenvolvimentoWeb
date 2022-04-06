@@ -1,0 +1,52 @@
+COLDIGO.compra = new Object();
+
+$(document).ready(function(){
+	
+	/*******************************
+	 * 	Funções do mestre-detalhe 
+	 *******************************/
+	
+	/* FUNÇÃO PARA CARREGAR AS MARCAS NOS CAMPOS DO FORMULÁRIO */
+
+	//Carrega as marcas registradas no BD no select do formulário, usando o id para fazer isso no campo certo
+	COLDIGO.compra.carregarMarcas = function(id){
+		
+		//Recebe os valores de todos os campos de marca no formulário e armazena em camposMarcas
+		var camposMarcas = document.getElementByName('selMarca[]');
+		
+	}
+	
+	
+	/*FUNÇÃO PARA CRIAR UMA NOVA LINHA DE DETALHE NO FORMULÁRIO*/
+	
+	//Ao clicar no botão botaoAdd:
+	$(".botaoAdd").click(function(){
+		
+		//Cria um clone da primeira linha de detalhe (veja a classe 'detalhes') e salva na variável novoCampo
+		var novoCampo = $("tr.detalhes:first").clone();
+		//Esvazia os valores de todos os inputs do clone
+		novoCampo.find("input").val("");
+		//Insere o clone na página, logo após a última linha já existente
+		novoCampo.insertAfter("tr.detalhes:last");
+		
+	});
+	
+	/* FUNÇÃO PARA REMOVER UMA LINHA DE DETALHE NO FORMULÁRIO */
+	
+	//Cria a função, recebendo o botão clicado por parâmetro
+	COLDIGO.compra.removeCampo = function(botao){
+		//Se houver mais de uma linha no mestre-detalhe
+		if($("tr.detalhes").length > 1){
+			//Remove a linha que contém o botão de excluir clicado. Para endender, pense na estrutura HTML:
+			//botao seria o botão, o primeiro parent é a CÉLULA onde está o botão,
+			//e o segundo parent é a linha onde está o botão
+			$(botao).parent().parent().remove();
+		//senão, é porque só tem uma linha, então...					
+		}else{
+			//...avisa que a linha não pode ser removida
+			COLDIGO.exibirAviso("A última linha não pode ser removida.");
+		}
+	//fecha a função removeCampo
+	}
+	
+});

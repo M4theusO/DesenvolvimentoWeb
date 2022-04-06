@@ -1,3 +1,5 @@
+<script src="../../js/purchasing.js"></script>
+
 <h2>Registro de Compras</h2>
 <form name="frmAddCompra" id="addCompra" class="frmInserir">
 	<fieldset>
@@ -29,7 +31,7 @@
 				<th>Valor (R$)</th>
 				<th><button type="button" name="addProduto" class="botaoAdd">+</button></th>
 			</tr>
-			<tr class="datalhes">
+			<tr class="detalhes">
 				<td>
 					<select name="selCategoria[]" class="campoPequeno">
 						<option value="">Selecione</option>
@@ -54,7 +56,7 @@
 					<input type="text" name="txtValor[]" class="campoPequeno">
 				</td>
 				<td>
-					<button type="button" name="removeProduto" class="botaoRemove">-</button>
+					<button type="button" name="removeProduto" class="botaoRemove" onclick="COLDIGO.compra.removeCampo(this)">-</button>
 				</td>
 			</tr>
 			<tr>
