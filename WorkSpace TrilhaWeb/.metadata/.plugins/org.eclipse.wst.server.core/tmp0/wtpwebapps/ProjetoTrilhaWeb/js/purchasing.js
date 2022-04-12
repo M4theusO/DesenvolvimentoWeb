@@ -6,6 +6,30 @@ $(document).ready(function(){
 	 * 	Funções do mestre-detalhe 
 	 *******************************/
 	
+	//Aqui iniciamos os arrays categoriaAntigo e marcaAntigo
+	//Com eles controlaremos cada mudança feita nos respectivos campos do fourmulário.
+	//Agora eles só terão uma posição, a 0, com valores vazios.
+	categoriaAntigo = new Array();
+	categoriaAntigo[0] = "";
+	marcaAntigo = new Array();
+	marcaAntigo[0] = "";
+	
+	/* FUNÇÃO PARA CAPTAR OS VALORES ATUAIS DOS CAMPOS DO FORMULÁRIO */
+	
+	//Ela recebe os valores dos campos existentes e guarda nos arrays criados no inicio desse arquivo.
+	//Com isso, podemos saber qual linha foi alterada para carregarmos os produtos na linha correta
+	COLDIGO.compra.guardaValores = function(){
+		//Recebe todas as posições dos campos selCategoria[] e selMarca[]
+		var categoriaAtual = document.getElementsByName('selCategoria[]');
+		var marcaAtual = document.getElementsByName('selMarca[]');
+		//Para cada liha existente no formulário...
+		for(var i = 0; i < categoriaAtual.length; i++){
+			//...captura e salva apenas os valores atuais nos arrays criados no início do arquivo
+			categoriaAntigo[i] = categoriaAtual[i].value;
+			marcaAntigo[i] = marcaAtual[i].value;
+		}
+	}
+	
 	/* FUNÇÃO PARA CARREGAR AS MARCAS NOS CAMPOS DO FORMULÁRIO */
 
 	//Carrega as marcas registradas no BD no select do formulário, usando o id para fazer isso no campo certo
@@ -85,6 +109,9 @@ $(document).ready(function(){
 		//Insere o clone na página, logo após a última linha já existente
 		novoCampo.insertAfter("tr.detalhes:last");
 		
+		//Chama a função guardaValores para guardar os valores atuais das categorias e marcas
+		COLDIGO.compra.guardaValores();
+		
 	});
 	
 	/* FUNÇÃO PARA REMOVER UMA LINHA DE DETALHE NO FORMULÁRIO */
@@ -97,12 +124,105 @@ $(document).ready(function(){
 			//botao seria o botão, o primeiro parent é a CÉLULA onde está o botão,
 			//e o segundo parent é a linha onde está o botão
 			$(botao).parent().parent().remove();
+			
+			//Chama a função guardaValores para guardar os valores atuais das categorias e marcas
+			COLDIGO.compra.guardaValores();
+			
 		//senão, é porque só tem uma linha, então...					
 		}else{
 			//...avisa que a linha não pode ser removida
 			COLDIGO.exibirAviso("A última linha não pode ser removida.");
 		}
 	//fecha a função removeCampo
+	}
+	
+	/* FUNÇÃO PARA CARREGAR OS PRODUTOS CORRETOS EM CADA LINHA DO FORMULÁRIO */
+	
+	COLDIGO.compra.carregarProdutos = function(){
+		
+		//Recebe todas as posições dos campos selproduto[], selmarca[] e selCategoria[] e salva em respectivas variáveis
+		var selectProduto = document.getElementsByName('selProduto[]');
+		var marcaAtual = document.getElementsByName('selMarca[]');
+		var categoriaAtual = document.getElementsByName('selCategoria[]');
+		//Para cada linha existente no formulário...
+		for (var j = 0; j < selectProduto.length; j++){			
+			//...se o valor antigo da marca ou categoria dessa linha for diferente do valor atual...
+			if((marcaAntigo[j] != marcaAtual[j].value) || (categoriaAntigo[j] != categoriaAtual[j].value)){
+				//é porque essa foi a linha alterada, portanto repassa a posição verificada para a variável 'linhaAlterada'
+				linhaAlterada = j;
+			}
+		}		
+		//Se um dos campos marca ou categoria dessa linha estiverem vazios,
+		//ainda não dá pra carregar o produto, pois precisamos de ambas as coisas selecionadas, então...
+		if((marcaAtual[linhaAlterada].value=="") || (categoriaAtual[linhaAlterada].value=="")){
+			//Guardamos a alteração, "registrando" seu acontecimento
+			COLDIGO.compra.guardaValores();
+			//e encerramos a execução da função.
+			return false;
+		}
+		
+		//Caso chegue aqui, é porque os dois campos foram preenchidos na linha modificada, então
+		//passa os valores do selCategoria e selMarca dessa linha para as variáveis cod
+		marcaCod = marcaAtual[linhaAlterada].value;
+		categoriaCod = categoriaAtual[linhaAlterada].value;
+		//mostra o Aguarde no campo
+		$(selectProduto[linhaAlterada]).html("<option>Aguarde</option>");
+		
+		//Inicia a busca no BD desses produtos, passando como dados a categoria e marca selecionadas
+		$.ajax({
+			type: "GET",
+			url: COLDIGO.PATH + "produto/buscarParaVenda",
+			data: "categoria="+categoriaCod+"&idMarca="+marcaCod,
+			//Se a busca der certo,
+			success: function(produtos){
+				//Converte os dados recebidos em formato de objeto de JS
+				produtos = JSON.parse(produtos);
+				
+				//Esvazia o select de produto da linha alterada
+				$(selectProduto[linhaAlterada]).html("");
+				
+				//Se houver algum produto daquela categoria e marca,
+				if(produtos.length){
+					//Remove a classe que desraca em vermelho o select caso não hajam produtos
+					$(selectProduto[linhaAlterada]).removeClass("aviso");
+					//Cria uma opção vazia para validarmos depois e a coloca no select da linha alterada
+					var option = document.createElement("option");
+					option.setAttribute("value", "");
+					option.innerHTML = ("Escolha");
+					$(selectProduto[linhaAlterada]).append(option);
+					
+					//Para cada produto encontrado
+					for(var i=0; i < produtos.length; i++){
+						//Cria uma opção no select da linha alterada para ele
+						var option = document.createElement("option");
+						option.setAttribute("value", produtos[i].id);
+						option.innerHTML = (produtos[i].modelo);
+						$(selectProduto[linhaAlterada]).append(option);
+					}
+					
+				}//PAREEEI AQUIIII
+			},
+			//Em caso de erro na busca,
+			error: function(info){
+				//Avisa o usuario
+				COLDIGO.exibirAviso("Erro ao buscar os produtos: "+ info.status + " - " + info.statusText);
+				//Cria um option vazio para destacar o erro e o coloca no select da linha alterada
+				$(selectProduto[linhaAlterada]).html("");
+				var option = document.createElement("option");
+				option.setAttribute("value", "");
+				option.innerHTML = ("Erro ao carregar produtos!");
+				$(selectProduto[linhaAlterada]).append(option);
+				$(selectProduto[linhaAlterada]).addClass("aviso");
+			}			
+		});
+		
+		//Chama a função guardaValores para guardar os valores atuais das categorias e marcas
+		COLDIGO.compra.guardaValores();
+		
+		//console.log("Categorias:\n"+categoriaAntigo);
+		//console.log("Marcas:\n"+marcaAntigo);
+		
+	//fecha a função
 	}
 	
 });

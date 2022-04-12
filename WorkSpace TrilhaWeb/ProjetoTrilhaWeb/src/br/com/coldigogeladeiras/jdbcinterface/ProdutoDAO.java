@@ -15,4 +15,5 @@ public interface ProdutoDAO {
 	public boolean alterar(Produto produto);
 	public int validaProduto(Produto produto);
 	public boolean validaMarca(int id);
+	public List<JsonObject> buscarParaVenda(int idMarca, int categoria);
 }

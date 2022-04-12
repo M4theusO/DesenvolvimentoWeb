@@ -266,5 +266,36 @@ public class JDBCProdutoDAO implements ProdutoDAO {
 		}
 		return retorno;
 	}
+	
+	public List<JsonObject> buscarParaVenda(int idMarca, int categoria){
+		
+		String comando = "SELECT id, modelo FROM produtos "
+				+ "WHERE marcas_id = "+ idMarca + " AND categoria = " + categoria
+				+ " ORDER BY produtos.modelo ASC";
+		System.out.println(comando);
+		List<JsonObject> listaProdutos = new ArrayList<JsonObject>();
+		JsonObject produto = null;
+		
+		try {
+			Statement stmt = conexao.createStatement();
+			ResultSet rs = stmt.executeQuery(comando);
+			
+			while(rs.next()) {
+				
+				int id = rs.getInt("id");
+				String modelo = rs.getString("modelo");
+				
+				produto = new JsonObject(); //PQ JSON?
+				produto.addProperty("id", id);
+				produto.addProperty("modelo", modelo);
+				
+				listaProdutos.add(produto);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return listaProdutos;
+	}
 
 }
