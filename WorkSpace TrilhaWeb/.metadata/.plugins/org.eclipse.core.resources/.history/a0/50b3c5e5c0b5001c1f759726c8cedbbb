@@ -1,9 +1,0 @@
-alert("OLAAA!");
-
-COLDIGO.compra = new Object();
-
-$(document).ready(function(){
-	
-	
-	
-});

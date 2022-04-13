@@ -175,6 +175,7 @@ $(document).ready(function(){
 			data: "categoria="+categoriaCod+"&idMarca="+marcaCod,
 			//Se a busca der certo,
 			success: function(produtos){
+				
 				//Converte os dados recebidos em formato de objeto de JS
 				produtos = JSON.parse(produtos);
 				
@@ -183,7 +184,7 @@ $(document).ready(function(){
 				
 				//Se houver algum produto daquela categoria e marca,
 				if(produtos.length){
-					//Remove a classe que desraca em vermelho o select caso não hajam produtos
+					//Remove a classe que destaca em vermelho o select caso não hajam produtos
 					$(selectProduto[linhaAlterada]).removeClass("aviso");
 					//Cria uma opção vazia para validarmos depois e a coloca no select da linha alterada
 					var option = document.createElement("option");
@@ -200,7 +201,16 @@ $(document).ready(function(){
 						$(selectProduto[linhaAlterada]).append(option);
 					}
 					
-				}//PAREEEI AQUIIII
+				}else{
+					//Cria uma opção destacando que não há produtos dessa marca e categoria
+					var option = document.createElement("option");
+					option.setAttribute("value", "");
+					option.innerHTML = ("Não há produtos correspondentes!");
+					$(selectProduto[linhaAlterada]).append(option);
+					//Destaca em vermelho
+					$(selectProduto[linhaAlterada]).addClass("aviso");					
+				}
+				
 			},
 			//Em caso de erro na busca,
 			error: function(info){
@@ -223,6 +233,78 @@ $(document).ready(function(){
 		//console.log("Marcas:\n"+marcaAntigo);
 		
 	//fecha a função
+	}
+	
+	/*	FUNÇÃO PARA VALIDAR OS CAMPOS DO FORMULÁRIO */
+	
+	COLDIGO.compra.validaDetalhe = function(){
+		
+		//Recebe os produtos preenchidos
+		var produtosValidar = document.getElementsByName('selProduto[]');
+		//Recebe as quantidades e valores preenchidas
+		var qtdeValidar = document.getElementsByName('txtQuantidade[]');
+		var valorValidar = document.getElementsByName('txtValor[]');
+		//Para cada linha de detalhe...
+		for(var i = 0; i < produtosValidar.length; i++){
+			//Cria a variável linha com valor de "i=1" para a mensagem avisar corretamente qual linha não foi preenchida
+			var linha = i+1;
+			//Se a posição atual dos arrays de marca ou quantidade ou produto estiverem vazios,
+			if((produtosValidar[i].value=="")||(qtdeValidar[i].value=="")||(valorValidar[i].value=="")){
+				//Avisa que essa linha não foi preenchida
+				COLDIGO.exibirAviso("A linha "+linha+" não foi completamente preenchida.");
+				//Retorna falso, encerrando a função
+				return false;
+			}
+		}
+		//Se chegar aqui, está tudo OK, então retorna verdadeiro
+		return true;
+	}
+	
+	
+	
+	/**************************************
+	 * 			Funções de compras
+	 **************************************/
+	
+	COLDIGO.compra.cadastrar = function(){
+		
+		if(COLDIGO.compra.validaDetalhe()){
+			
+			var compra = new Object();
+			compra.data = document.frmAddCompra.txtData.value;
+			compra.fornecedor = document.frmAddCompra.txtFornecedor.value;
+			
+			if(compra.data=="" || compra.fornecedor==""){
+				COLDIGO.exibirAviso("Preencha todos os campos!");	
+			}else{			
+			
+				var produtos = document.getElementsByName('selProduto[]');
+				var quantidades = document.getElementsByName('txtQuantidade[]');
+				var valores = document.getElementsByName('txtValor[]');
+				compra.produtos = new Array(produtos.length);
+				for(var i = 0; i < produtos.length; i++){
+					compra.produtos[i] = new Object();
+					compra.produtos[i].idProduto = produtos[i].value;
+					compra.produtos[i].quantidade = quantidades[i].value;
+					compra.produtos[i].valor = valores[i].value;
+				}
+				console.log(compra);
+			
+				$.ajax({
+				
+					type: "POST",
+					url: COLDIGO.PATH + "compra/inserir",
+					data: JSON.stringify(compra),
+					success: function(msg){
+						COLDIGO.exibirAviso(msg);
+					},
+					error: function(info){
+						COLDIGO.exibirAviso("Erro ao cadastrar um novo produto: "+ info.status + " - "+ info.statusText);					
+					}				
+				});
+
+			}
+		}
 	}
 	
 });
