@@ -296,6 +296,7 @@ $(document).ready(function(){
 					url: COLDIGO.PATH + "compra/inserir",
 					data: JSON.stringify(compra),
 					success: function(msg){
+						$("#addCompra").trigger("reset"); //reseta o formulário
 						COLDIGO.exibirAviso(msg);
 					},
 					error: function(info){

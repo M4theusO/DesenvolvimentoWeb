@@ -1,0 +1,15 @@
+package br.com.coldigogeladeiras.jdbc;
+
+public class JDBCCompraDAO implements CompraDAO {
+	
+	private Connection conexao;
+	
+	public JDBCCompraDAO(Connection conexao) {
+		this.conexao = conexao;
+	}
+	
+	public boolean inserir(Compra compra) {
+		
+	}
+
+}

@@ -1,0 +1,39 @@
+COLDIGO.relatorioCompra = new Object();
+
+$(document).ready(function(){
+	
+	//Busca no BD e exibe na pg os produtos que atendem à solicitação do usuário
+	COLDIGO.relatorioCompra.buscar = function(){
+		//Esse Ajax dispensa apresentações
+		$.ajax({
+			type: "GET",
+			url: COLDIGO.PATH + "compra/relatorio",
+			success: function(dados){
+				
+				dados = JSON.parse(dados);
+				$("#listaCompras").html(COLDIGO.relatorioCompra.exibir(dados));	
+				
+			},
+			error: function(info){
+				
+			}					
+		});
+	};
+	
+	//Executa a função ao carregar a página
+	COLDIGO.relatorioCompra.buscar();
+	
+	//Transforma os dados dos produtos recebidos do servidor em uma tabela HTML
+	COLDIGO.relatorioCompra.exibir = function(listaDeCompras){
+		
+		//Cria uma var pra receber o HTML das vendas do relatório
+		var vendas = "";
+		
+		//Se houverem vendas...
+		if(listaDeCompras != undefined && listaDeCompras.length > 0){
+			
+		}
+		
+	}
+	
+});

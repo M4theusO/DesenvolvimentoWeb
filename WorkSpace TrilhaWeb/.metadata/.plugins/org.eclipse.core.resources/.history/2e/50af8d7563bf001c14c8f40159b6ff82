@@ -1,0 +1,21 @@
+package br.com.coldigogeladeiras.jdbc;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import br.com.coldigogeladeiras.jdbcinterface.ProdutoCompraDAO;
+import br.com.coldigogeladeiras.modelo.ProdutoCompra;
+
+public class JDBCProdutoCompraDAO implements ProdutoCompraDAO{
+	
+	private Connection conexao;
+	
+	public JDBCProdutoCompraDAO(Connection conexao) {
+		this.conexao = conexao;
+	}
+	
+	public boolean inserir(ProdutoCompra produtoCompra) throws SQLException{
+		
+	}
+
+}

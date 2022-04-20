@@ -1,0 +1,55 @@
+COLDIGO.relatorioCompra = new Object();
+
+$(document).ready(function(){
+	
+	//Busca no BD e exibe na pg os produtos que atendem à solicitação do usuário
+	COLDIGO.relatorioCompra.buscar = function(){
+		//Esse Ajax dispensa apresentações
+		$.ajax({
+			type: "GET",
+			url: COLDIGO.PATH + "compra/relatorio",
+			success: function(dados){
+				
+				dados = JSON.parse(dados);
+				$("#listaCompras").html(COLDIGO.relatorioCompra.exibir(dados));	
+				
+			},
+			error: function(info){
+				
+			}					
+		});
+	};
+	
+	//Executa a função ao carregar a página
+	COLDIGO.relatorioCompra.buscar();
+	
+	//Transforma os dados dos produtos recebidos do servidor em uma tabela HTML
+	COLDIGO.relatorioCompra.exibir = function(listaDeCompras){
+		
+		//Cria uma var pra receber o HTML das vendas do relatório
+		var vendas = "";
+		
+		//Se houverem vendas...
+		if(listaDeCompras != undefined && listaDeCompras.length > 0){
+			//Para cada venda...
+			for(var i=0; i<listaDeCompras.length; i++){
+				//Cria uma tabela, e duas linhas com os dados gerais da venda
+				vendas += "<table>" +
+				"<tr>" +
+					"<th colspan='5'>Id:"+listaDeCompras[i].id+"</th>" +
+				"</tr>" +
+				"<tr>" +
+					"<th>Data</th>" +
+					"<td>"+listaDeCompras[i].data+"</td>" +
+					"<th>Fornecedor</th>" +
+					"<td colspan='2'>"+listaDeCompras[i].fornecedor+"</td>" +
+				"</tr>";
+				
+				//Fecha a tabela daquela compra
+				vendas += "</table>";
+			}
+		}
+		
+	}
+	
+});

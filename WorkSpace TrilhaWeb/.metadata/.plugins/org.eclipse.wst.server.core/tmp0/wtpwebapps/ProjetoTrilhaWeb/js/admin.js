@@ -32,6 +32,13 @@ $(document).ready(function(){
 		return valor.toFixed(2).replace('.',',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
 	}
 	
+	COLDIGO.formatarData = function(dataFrm){
+		//var dataInput = dataFrm;
+
+		data = new Date(dataFrm);
+		return dataFormatada = data.toLocaleDateString('pt-BR', {timeZone: 'UTC'});
+	}
+	
 	//Define as configurações base de uma modal de aviso
 	COLDIGO.exibirAviso = function(aviso){
 		var modal = {

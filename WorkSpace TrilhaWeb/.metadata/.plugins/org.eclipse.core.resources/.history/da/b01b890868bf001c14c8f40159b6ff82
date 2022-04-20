@@ -1,0 +1,7 @@
+COLDIGO.relatorioCompra = new Object();
+
+$(document).ready(function(){
+	
+	alert("JS encontrado!");
+	
+});

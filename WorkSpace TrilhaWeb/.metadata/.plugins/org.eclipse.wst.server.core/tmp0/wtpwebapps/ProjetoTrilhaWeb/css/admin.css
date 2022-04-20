@@ -324,3 +324,14 @@ input:checked[type="checkbox"]:before{
 	left: 30px;
 }
 
+/*********************************
+		Relatórios NOVO M1
+*********************************/
+#listaCompras table{
+	margin-bottom: 10px;
+}
+
+#listaCompras table th{
+	width: 20%;
+}
+
