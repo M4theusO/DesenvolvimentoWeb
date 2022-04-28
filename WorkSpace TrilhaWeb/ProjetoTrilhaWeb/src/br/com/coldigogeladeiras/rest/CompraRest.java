@@ -29,7 +29,7 @@ public class CompraRest extends UtilRest{
 	public Response inserir(String compraParam) {
 		
 		try {
-			
+			System.out.println(compraParam);
 			Compra compra = new Gson().fromJson(compraParam, Compra.class);
 		
 			Conexao conec = new Conexao();

@@ -1,8 +1,0 @@
-package br.com.coldigogeladeiras.rest;
-
-import javax.ws.rs.Path;
-
-@Path("compra")
-public class CompraRest extends UtilRest{
-
-}

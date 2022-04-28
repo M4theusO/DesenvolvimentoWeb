@@ -1,7 +1,0 @@
-package br.com.coldigogeladeiras.jdbcinterface;
-
-public interface CompraDAO {
-	
-	public boolean inserir(Compra compra);
-
-}
